@@ -768,6 +768,52 @@
     "https://media.geeksforgeeks.org/wp-content/uploads/20240215121356/jsre15.jpg"
                 alt="Img 3" id="img3" />
         </div>
+           <title>Tailwind CSS Carousel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .carousel-container {
+            position: relative;
+        }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container max-w-lg mx-auto mt-10">
+        <div class="relative">
+            <div class="carousel-slide">
+                <div class="flex-none w-full h-64 bg-gray-300 flex items-center justify-center">Slide 1</div>
+                <div class="flex-none w-full h-64 bg-gray-400 flex items-center justify-center">Slide 2</div>
+                <div class="flex-none w-full h-64 bg-gray-500 flex items-center justify-center">Slide 3</div>
+            </div>
+            <button class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="prevSlide()">&#10094;</button>
+            <button class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        let index = 0;
+
+        function showSlide(i) {
+            const slides = document.querySelector('.carousel-slide');
+            const totalSlides = slides.children.length;
+            index = (i + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function prevSlide() {
+            showSlide(index - 1);
+        }
+
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+
+        // Optional: Auto-slide every 3 seconds
+        setInterval(nextSlide, 3000);
+    </script>
 
         
     
